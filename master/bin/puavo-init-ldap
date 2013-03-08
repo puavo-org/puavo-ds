@@ -96,12 +96,11 @@ puts "Using #{@rootdn} as rootdn"
 @kdcpw_hash=`slappasswd -h "{SSHA}" -s "#{@kdcpw}"`.gsub(/\n/,"")
 @kadminpw_hash=`slappasswd -h "{SSHA}" -s "#{@kadminpw}"`.gsub(/\n/,"")
 
-# First whole slapd configuration and all data is wiped out
+# First all slapd configurations and all data are wiped out
 
 # Make sure that slapd is not running
 `/etc/init.d/slapd stop`
 `killall -9 slapd`
-
 FileUtils.rm_r Dir.glob('/var/lib/ldap/*')
 
 # AppArmor rules allow slapd to access files under /var/lib/ldap so
