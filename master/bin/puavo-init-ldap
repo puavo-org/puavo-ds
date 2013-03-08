@@ -101,7 +101,15 @@ puts "Using #{@rootdn} as rootdn"
 @kdcpw_hash=`slappasswd -h "{SSHA}" -s "#{@kdcpw}"`.gsub(/\n/,"")
 @kadminpw_hash=`slappasswd -h "{SSHA}" -s "#{@kadminpw}"`.gsub(/\n/,"")
 
-# First all slapd configurations and all data are wiped out
+print <<EOF
+I'm now going to initialize new LDAP databases on this machine.
+This will destroy previous databases permanently.
+EOF
+
+while true
+  print "Type YES to continue> "
+  break if STDIN.gets.strip == "YES"
+end
 
 # Make sure that slapd is not running
 `/etc/init.d/slapd stop`
