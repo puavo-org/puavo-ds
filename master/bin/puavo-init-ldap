@@ -42,6 +42,7 @@ end
 # @param {String} question Question printed to screen
 # @param {Symbol} puavo_attr Puavo attribute to be written to /etc/puavo
 # @param {String} [default] Default value for new Puavo attributes
+# @return {String} new value
 def ask_puavo_attr(question, puavo_attr, default=nil)
 
   begin
