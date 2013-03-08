@@ -12,6 +12,7 @@ require 'yaml'
 require 'tempfile'
 require 'optparse'
 require 'fileutils'
+require 'socket'
 
 require 'puavo/etc'
 require 'puavo-ds/templates'
@@ -162,5 +163,8 @@ sleep 5
 
   tempfile.delete
 end
+
+# LDAP master address is this machine + topdomain
+PUAVO_ETC.write(:ldap_master, "#{ Socket.gethostname }.#{ PUAVO_ETC.topdomain }")
 
 puts "LDAP init ok!"
