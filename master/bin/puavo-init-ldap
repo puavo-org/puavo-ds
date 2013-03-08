@@ -166,4 +166,5 @@ end
 # LDAP master address is this machine + topdomain
 PUAVO_ETC.write(:ldap_master, "#{ Socket.gethostname }.#{ PUAVO_ETC.topdomain }")
 
+puts "Test: ldapsearch -ZZ -h #{ PUAVO_ETC.ldap_master } -D uid=admin,o=puavo -w #{ @rootpw } -x -b o=puavo"
 puts "LDAP init ok!"
