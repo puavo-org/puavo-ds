@@ -263,7 +263,8 @@ class LdapAcl
 															  Set.externalservice_printerqueues),							],
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       [ Hosts.servers.children,	attrs(%w(puavoDeviceCurrentImage
-                                         puavoDeviceAvailableImage)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
+                                         puavoDeviceAvailableImage
+                                         puavoHardwareInfo)),		Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.laptops,
 															  Set.externalservice_devices)	],
@@ -409,7 +410,12 @@ class LdapAcl
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       [ Hosts.devices.children,	attrs(%w(puavoDeviceCurrentImage
                                          puavoDevicePrimaryUser
-                                         puavoDeviceAvailableImage)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
+                                         puavoDeviceAvailableImage)),	Rule.write(Set.admin, 'self'),			  Rule.read(PuavoUid.monitor,
+															  PuavoUid.puavo_ticket,
+															  Set.externalservice_devices)	],
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      [ Hosts.devices.children,	attrs(%w(puavoHardwareInfo)),		Rule.write(Set.admin, 'self', Hosts.servers.children),
+															  Rule.read(PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.externalservice_devices)	],
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
