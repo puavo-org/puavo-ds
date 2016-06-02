@@ -263,7 +263,8 @@ class LdapAcl
 															  Set.externalservice_printerqueues),							],
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       [ Hosts.servers.children,	attrs(%w(puavoDeviceCurrentImage
-                                         puavoDeviceAvailableImage)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
+                                         puavoDeviceAvailableImage
+                                         puavoDeviceParameterDefinitions)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.laptops,
 															  Set.externalservice_devices)	],
@@ -399,7 +400,8 @@ class LdapAcl
 					 objectClass
 					 puavoWlanChannel
 					 puavoHostname
-					 puavoTag)),			Rule.write(Set.admin),			Rule.read(PuavoUid.puppet,
+					 puavoTag
+					 puavoDeviceParameters)),	Rule.write(Set.admin),			Rule.read(PuavoUid.puppet,
 															  PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.externalservice_devices,
@@ -410,7 +412,8 @@ class LdapAcl
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       [ Hosts.devices.children,	attrs(%w(puavoDeviceCurrentImage
                                          puavoDevicePrimaryUser
-                                         puavoDeviceAvailableImage)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
+                                         puavoDeviceAvailableImage
+                                         puavoDeviceParameterDefinitions)), Rule.write(Set.admin, 'self'),	Rule.read(PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.externalservice_devices)	],
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -541,6 +544,7 @@ class LdapAcl
 					 preferredLanguage
                                          puavoLocale
 					 puavoDeviceImage
+					 puavoDeviceParameters
 					 puavoAllowGuest
 					 puavoPersonalDevice
 					 puavoPrinterQueue
