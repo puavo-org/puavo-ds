@@ -264,7 +264,8 @@ class LdapAcl
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       [ Hosts.servers.children,	attrs(%w(puavoDeviceCurrentImage
                                          puavoDeviceAvailableImage
-                                         puavoDeviceParameterDefinitions)),	Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
+                                         puavoDeviceParameterDefinitions
+					 puavoDeviceState)),		Rule.write(Set.admin, 'self'),		Rule.read(PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.laptops,
 															  Set.externalservice_devices)	],
@@ -401,7 +402,8 @@ class LdapAcl
 					 puavoWlanChannel
 					 puavoHostname
 					 puavoTag
-					 puavoDeviceParameters)),	Rule.write(Set.admin),			Rule.read(PuavoUid.puppet,
+					 puavoDeviceParameters
+					 puavoDeviceState)),		Rule.write(Set.admin),			Rule.read(PuavoUid.puppet,
 															  PuavoUid.monitor,
 															  PuavoUid.puavo_ticket,
 															  Set.externalservice_devices,
