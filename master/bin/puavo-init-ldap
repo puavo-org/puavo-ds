@@ -157,7 +157,7 @@ end
 PUAVO_ETC.write(:ldap_master, "#{ Socket.gethostname }.#{ PUAVO_ETC.topdomain }")
 
 # Make sure that slapd is not running
-`stop slapd`
+`systemctl stop slapd`
 `killall -9 slapd`
 FileUtils.rm_r Dir.glob('/var/lib/ldap/*')
 
@@ -168,6 +168,7 @@ FileUtils.rm_r Dir.glob('/var/lib/ldap/*')
 
 FileUtils.mkdir_p '/var/lib/ldap/o=puavo'
 
+FileUtils.mkdir_p '/etc/ldap/slapd.d'
 FileUtils.rm_r Dir.glob('/etc/ldap/slapd.d/*')
 
 # Check that the certificate files can be found
@@ -206,7 +207,7 @@ FileUtils.chown_R 'openldap', 'openldap', '/etc/ldap/slapd.d'
 FileUtils.chown_R 'openldap', 'openldap', '/var/lib/ldap/o=puavo'
 FileUtils.chmod 0750, '/var/lib/ldap/o=puavo'
 
-assert_exec 'start slapd'
+assert_exec 'systemctl start slapd'
 sleep 5
 
 # slapd should be running now and the rest of the modifications
